@@ -1,0 +1,85 @@
+﻿@model IEnumerable<FribergsCarRentalsAB.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bilar</h1>
+@if (User.IsInRole("Admin"))
+{
+
+    if (TempData["AlertMessage"] != null)
+    {
+    <div class="alert alert-success" role="alert">
+            @TempData["AlertMessage"]
+    </div>
+    }
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Märke
+            </th>
+            <th>
+                Färg
+            </th>
+            <th>
+                Bokningsbar
+            </th>
+            <th>
+                Bild
+            </th>
+           
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rentable)
+            </td>
+            <td>
+                <img src="@Url.Content(item.CarPicUrl1)" alt="" style="max-width: 150px;" />
+            </td>
+               
+            <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
+                 }
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+            </td>
+                
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+
+    <a asp-action="Create" asp-controller="Rentals"><h4> Ny uthyrning</h4></a>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div>
+    <p>För att hyra en bil måste du ha ett konto, fyll i <a asp-action="RentalForm" asp-controller="Rentals">formuläret</a> så kontaktar vi er så snart en handläggare är ledig så fixar vi ett konto.</p>
+
+</div>

@@ -1,0 +1,24 @@
+﻿using System.ComponentModel.DataAnnotations;
+using FribergsABData;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.EntityFrameworkCore;
+
+namespace FribergsABData.Models
+{
+    public class Rental
+    {
+        public int Id { get; set; }
+        [Required]
+        public int? UserId { get; set; }
+        [Required]
+        public int? CarId { get; set; }
+        //public User? User { get; set; }
+        //public Car? Car { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime Start { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime End { get; set; }
+    }
+
+}

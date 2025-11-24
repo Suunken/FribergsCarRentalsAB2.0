@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FribergsCarRentalsAB.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Användare</h1>
+
+
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["AlertMessage"]
+    </div>
+}
+@if (User.IsInRole("Admin"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Epost
+                </th>
+                <th>
+                    Namn
+                </th>
+
+
+                <th>
+
+                </th>
+             
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
+else
+{
+    <p>Gå tillbaka till <a asp-action="Index" asp-controller="Home"><strong>startsidan</strong> </a></p>
+}

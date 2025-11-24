@@ -1,0 +1,51 @@
+﻿@model FribergsCarRentalsAB.Models.Rental
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Kontaktfomulär</h1>
+
+
+<div class="container mt-5">
+<div class="row justify-content-center">
+    <div class="col-md-6">
+            <form id="kontaktFormulär">
+            <div class="mb-3">
+                <label for="fnamn">Förnamn:</label>
+                <input type="text" id="fnamn" class="form-control" />
+            </div>
+
+                <div class="mb-3">
+                <label for="enamn">Efternamn:</label>
+                    <input type="text" id="enamn" class="form-control" />
+            </div>
+
+                <div class="form-group mb-1">                    
+                <label for="Epost">Epost:</label>
+                    <input type="email" id="Epost" class="form-control" />
+           </div>
+
+                    <div class="form-group mb-1">
+                <label for="Mobil">Mobil:</label>
+                    <input type="tel" id="Mobil" class="form-control" />
+            </div>
+            <br />
+            <br />
+                    <div class="form-group mb-1">
+                    <input type="submit" value="Skicka" class="form-control" onclick="alertFunction()" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+@section Scripts {
+    <script>
+function alertFunction(){
+    alert("Tack för ditt formulär, vi kommer att kontaka dig så fort vi får tid! ");
+    document.getElementById("kontaktFormulär").reset();
+    }
+
+                    
+    </script>
+}

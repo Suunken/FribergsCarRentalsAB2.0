@@ -1,0 +1,107 @@
+﻿@model IEnumerable<FribergsCarRentalsAB.Models.Rental>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Uthyrningar</h1>
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["AlertMessage"]
+    </div>
+}
+@if (User.IsInRole("Admin"))
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Epost
+            </th>
+            <th>
+                Namn
+            </th>
+            <th>
+                Bil
+            </th>
+            <th>
+                    Uthyrd från
+            </th>
+            <th>
+                    Uthyrd till
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End)
+                </td>
+                <td>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Bil
+                </th>
+                <th>
+                    Uthyrd från
+                </th>
+                <th>
+                    Uthyrd till
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Car.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Start)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.End)
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

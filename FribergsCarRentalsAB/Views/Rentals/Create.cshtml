@@ -1,0 +1,61 @@
+﻿@model FribergsCarRentalsAB.Models.Rental
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Skapa ny uthyrning!</h1>
+
+
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label asp-for="CarId" class="control-label">Bil</label>
+                <select asp-for="CarId" class="form-control" asp-items="ViewBag.CarId"></select>
+                <span asp-validation-for="CarId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">Användare</label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Start" class="control-label">Hyrdatum start</label>
+                <input asp-for="Start" class="form-control" type="date"  />
+                <span asp-validation-for="Start" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="End" class="control-label">Hyrdatum Slut</label>
+                <input asp-for="End" class="form-control" type="date"  />
+                <span asp-validation-for="End" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Skapa" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        <a asp-action="Index" asp-controller="Admin">Tillbaka till Admin</a>
+    </div>
+}
+else
+{
+    <div>
+        <a asp-action="Index" asp-controller="Home">Tillbaka till hemskärmen</a>
+    </div>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

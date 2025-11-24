@@ -1,0 +1,6 @@
+@FribergsABData_HostAddress = http://localhost:5290
+
+GET {{FribergsABData_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
