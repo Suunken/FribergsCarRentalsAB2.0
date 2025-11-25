@@ -58,7 +58,7 @@ namespace FribergsABData.Data
         public IEnumerable<Car> GetAllRentals()
         {
             //return applicationDbContext.Rentals.Include(x => x.Car).OrderByDescending(x => x.Car.Id);
-            return applicationDbContext.Cars.OrderByDescending(x => x.Id);
+           return applicationDbContext.Cars.OrderByDescending(x => x.Id);
         }
 
         public IEnumerable<User> GetAllUsers()

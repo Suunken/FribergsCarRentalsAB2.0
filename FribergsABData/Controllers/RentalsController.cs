@@ -22,7 +22,10 @@ namespace FribergsABData.Controllers
 
         public async Task<IActionResult> Get()
         {
-            var rentals = await _context.Rentals.ToListAsync();
+            var rentals = await _context.Rentals
+                .Include(c=>c.Car)
+                .Include(u=>u.User)
+                .ToListAsync();
             return Ok(rentals);
         }
 
