@@ -81,7 +81,7 @@ namespace FribergsABData.Controllers
                 changeRental.End = rentals.End;
 
             };
-            _context.Rentals.Add(rentals);
+            _context.Rentals.Add(changeRental);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetId), new { id = rentals.Id }, rentals);
 
@@ -92,7 +92,7 @@ namespace FribergsABData.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var deleteRental = await _context.Rentals.FindAsync(id);
-            if (id == null)
+            if (deleteRental == null)
             {
                 return BadRequest($"Hittade ingen uthyrning med ID:{id}");
             }
